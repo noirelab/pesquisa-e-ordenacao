@@ -3,7 +3,7 @@ import flet as ft
 import os
 import time
 
-from sorting_methods import *
+from gui.sorting_methods import *
 
 SORT_FUNCTIONS = {
     "Bubble Sort": bubble_sort,
@@ -16,7 +16,7 @@ SORT_FUNCTIONS = {
     "Radix Sort": radix_sort
 }
 
-FILES_FOLDER = "files"
+FILES_FOLDER = "files/files"
 
 def main(page: ft.Page):
     page.title = "Pesquisa e Ordenação - Algoritmos de Ordenação"

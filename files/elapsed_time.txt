@@ -1,1 +1,3 @@
 numeros_randomicos_1250000.txt - Quick Sort - 3.2668 seconds
+numeros_randomicos_750000.txt - Quick Sort - 2.5542 seconds
+numeros_randomicos_750000.txt - Radix Sort - 2.1898 seconds

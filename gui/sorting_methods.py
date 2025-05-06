@@ -1,51 +1,66 @@
-def bubble_sort(arr):
+import random
+from typing import List, Any
+
+
+def bubble_sort(arr: List[Any]) -> List[Any]:
+    """
+    bubble sort otimizado: interrompe se não houver trocas em uma iteração
+    """
     n = len(arr)
-    # Traverse through all array elements
     for i in range(n):
-        # Last i elements are already in place
-        for j in range(0, n - i - 1):
+        swapped = False
+        # após cada iteração, os últimos i elementos já estão ordenados
+        for j in range(n - i - 1):
             if arr[j] > arr[j + 1]:
-                # swap
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
     return arr
 
-def selection_sort(arr):
+
+def selection_sort(arr: List[Any]) -> List[Any]:
+    """
+    selection sort estável: seleciona o mínimo da parte não ordenada
+    """
     n = len(arr)
     for i in range(n):
-        # Find the minimum element in remaining unsorted array
         min_idx = i
         for j in range(i + 1, n):
             if arr[j] < arr[min_idx]:
                 min_idx = j
-        # Swap the found minimum element with the first element
+        # troca o elemento mínimo com o elemento da posição i
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
     return arr
 
-def insertion_sort(arr):
+
+def insertion_sort(arr: List[Any]) -> List[Any]:
     """
-    Builds the sorted list one element at a time by inserting each into its place.
-    O(n²) time, in-place, stable.
+    insertion sort estável: insere elementos na posição correta
     """
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
+        # move elementos maiores que key uma posição à direita
         while j >= 0 and arr[j] > key:
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
     return arr
 
-def shell_sort(arr):
+
+def shell_sort(arr: List[Any]) -> List[Any]:
     """
-    Generalization of insertion sort that starts by sorting distant elements.
-    Uses gap sequence: n//2, n//4, …, 1.
+    shell sort: generalização do insertion sort usando gaps decrescentes
     """
     n = len(arr)
     gap = n // 2
+    # reduz gaps até chegar a 1
     while gap > 0:
         for i in range(gap, n):
             temp = arr[i]
             j = i
+            # ordena elementos distantes pelo gap atual
             while j >= gap and arr[j - gap] > temp:
                 arr[j] = arr[j - gap]
                 j -= gap
@@ -53,10 +68,10 @@ def shell_sort(arr):
         gap //= 2
     return arr
 
-def merge_sort(arr):
+
+def merge_sort(arr: List[Any]) -> List[Any]:
     """
-    Divide-and-conquer: split in halves, sort each, and merge.
-    O(n log n) time, O(n) extra space, stable.
+    merge sort estável: divide e conquista, usa espaço extra
     """
     if len(arr) <= 1:
         return arr
@@ -65,6 +80,7 @@ def merge_sort(arr):
     right = merge_sort(arr[mid:])
     merged = []
     i = j = 0
+    # mescla duas metades ordenadas
     while i < len(left) and j < len(right):
         if left[i] <= right[j]:
             merged.append(left[i]); i += 1
@@ -74,17 +90,21 @@ def merge_sort(arr):
     merged.extend(right[j:])
     return merged
 
-def quick_sort(arr):
+
+def quick_sort(arr: List[Any]) -> List[Any]:
     """
-    In-place QuickSort using Lomuto partition. Average O(n log n), worst O(n²).
+    quick sort in-place: usa pivô aleatório para reduzir pior caso
     """
-    def _qs(a, low, high):
+    def _qs(a: List[Any], low: int, high: int) -> None:
         if low < high:
             p = partition(a, low, high)
             _qs(a, low, p - 1)
             _qs(a, p + 1, high)
 
-    def partition(a, low, high):
+    def partition(a: List[Any], low: int, high: int) -> int:
+        # escolhe pivô aleatório e posiciona em a[high]
+        rand_idx = random.randint(low, high)
+        a[rand_idx], a[high] = a[high], a[rand_idx]
         pivot = a[high]
         i = low
         for j in range(low, high):
@@ -97,42 +117,44 @@ def quick_sort(arr):
     _qs(arr, 0, len(arr) - 1)
     return arr
 
-def heap_sort(arr):
+
+def heap_sort(arr: List[Any]) -> List[Any]:
     """
-    Builds a max-heap then extracts the max to the end repeatedly.
-    O(n log n) time, in-place.
+    heap sort in-place: constrói max-heap e extrai o máximo iterativamente
     """
-    def heapify(a, n, i):
-        largest = i
-        left = 2 * i + 1
-        right = 2 * i + 2
-        if left < n and a[left] > a[largest]:
+    def heapify(a: List[Any], size: int, root: int) -> None:
+        largest = root
+        left = 2 * root + 1
+        right = 2 * root + 2
+        # verifica se filho esquerdo é maior que o nó raiz
+        if left < size and a[left] > a[largest]:
             largest = left
-        if right < n and a[right] > a[largest]:
+        # verifica se filho direito é maior que o nó maior atual
+        if right < size and a[right] > a[largest]:
             largest = right
-        if largest != i:
-            a[i], a[largest] = a[largest], a[i]
-            heapify(a, n, largest)
+        if largest != root:
+            a[root], a[largest] = a[largest], a[root]
+            heapify(a, size, largest)
 
     n = len(arr)
-    # Build max-heap
+    # constrói max-heap
     for i in range(n // 2 - 1, -1, -1):
         heapify(arr, n, i)
-    # Extract elements from heap
+    # extrai elementos do heap
     for i in range(n - 1, 0, -1):
         arr[0], arr[i] = arr[i], arr[0]
         heapify(arr, i, 0)
     return arr
 
-def radix_sort(arr):
+
+def radix_sort(arr: List[int]) -> List[int]:
     """
-    Least Significant Digit (LSD) Radix Sort for non-negative integers.
-    O(d·(n + k)) time, where d = #digits, k = base (10).
+    radix sort lsd para inteiros não-negativos, estável
     """
     if not arr:
         return arr
-    # Ensure all non-negative
-    assert all(isinstance(x, int) and x >= 0 for x in arr), "LSD Radix only for non-negative ints"
+    assert all(isinstance(x, int) and x >= 0 for x in arr), \
+        "radix sort só suporta inteiros não-negativos"
     max_val = max(arr)
     exp = 1
     n = len(arr)
@@ -140,20 +162,19 @@ def radix_sort(arr):
 
     while max_val // exp > 0:
         count = [0] * 10
-        # Count occurrences
+        # conta ocorrências de cada dígito
         for num in arr:
-            index = (num // exp) % 10
-            count[index] += 1
-        # Prefix sums
+            idx = (num // exp) % 10
+            count[idx] += 1
+        # converte em prefix sum
         for i in range(1, 10):
             count[i] += count[i - 1]
-        # Build output array (stable)
+        # constrói array de saída estável
         for num in reversed(arr):
             idx = (num // exp) % 10
             output[count[idx] - 1] = num
             count[idx] -= 1
-        # Copy back
+        # copia resultado de volta para arr
         arr[:] = output[:]
         exp *= 10
-
     return arr

@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1746542212.69723 "c:/Users/kaiqu/pesquisa-e-ordenacao/artigo/Artigo.tex" "Artigo.pdf" "Artigo" 1746542213.93964 0
-  "Artigo.aux" 1746542213 2345 6737b6d932702680d734502eb5236ce0 "pdflatex"
-  "Artigo.out" 1746542213 2524 c416cef2cc06949ef0eeb050bbea50c4 "pdflatex"
-  "Artigo.tex" 1746542211 14903 af73b6b65a0e9cdb904d302b620e0875 ""
+["pdflatex"] 1746542335.9356 "c:/Users/kaiqu/pesquisa-e-ordenacao/artigo/Artigo.tex" "Artigo.pdf" "Artigo" 1746542337.16524 0
+  "Artigo.aux" 1746542336 2345 6737b6d932702680d734502eb5236ce0 "pdflatex"
+  "Artigo.out" 1746542336 2524 c416cef2cc06949ef0eeb050bbea50c4 "pdflatex"
+  "Artigo.tex" 1746542333 14903 af73b6b65a0e9cdb904d302b620e0875 ""
   "C:/Users/kaiqu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1746536831 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/kaiqu/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1746536836 31952 85168dd03ce811c0915b0aec77262630 ""
   "C:/Users/kaiqu/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1746536840 40136 3adf7b42af802ed7c08c79ac3241aa99 ""
@@ -75,7 +75,7 @@
   "C:/Users/kaiqu/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/kaiqu/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "C:/Users/kaiqu/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/kaiqu/pesquisa-e-ordenacao/artigo/Artigo.tex" 1746542211 14903 af73b6b65a0e9cdb904d302b620e0875 ""
+  "c:/Users/kaiqu/pesquisa-e-ordenacao/artigo/Artigo.tex" 1746542333 14903 af73b6b65a0e9cdb904d302b620e0875 ""
   "images/bubble.png" 1746535048 8769 bea7d489c5cfd5cdbcd617727e25b4c2 ""
   "images/heap.png" 1746535048 7818 88b6a34ba8a1fe6baa4ca6028229881e ""
   "images/insertion.png" 1746535048 8777 f3926f391ebeac976273529d59629d78 ""

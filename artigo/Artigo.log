@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.6)  6 MAY 2025 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.6)  6 MAY 2025 13:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -363,17 +363,17 @@ Package hyperref Info: Link coloring OFF on input line 23.
 <images/bubble.png, id=83, 492.33937pt x 115.93312pt>
 File: images/bubble.png Graphic file (type png)
 <use images/bubble.png>
-Package pdftex.def Info: images/bubble.png  used on input line 53.
+Package pdftex.def Info: images/bubble.png  used on input line 50.
 (pdftex.def)             Requested size: 362.37569pt x 85.33275pt.
 <images/insertion.png, id=85, 494.59781pt x 118.19156pt>
 File: images/insertion.png Graphic file (type png)
 <use images/insertion.png>
-Package pdftex.def Info: images/insertion.png  used on input line 61.
+Package pdftex.def Info: images/insertion.png  used on input line 58.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 <images/shell.png, id=86, 494.59781pt x 118.19156pt>
 File: images/shell.png Graphic file (type png)
 <use images/shell.png>
-Package pdftex.def Info: images/shell.png  used on input line 69.
+Package pdftex.def Info: images/shell.png  used on input line 66.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 
 
@@ -381,17 +381,17 @@ Package pdftex.def Info: images/shell.png  used on input line 69.
 <images/selection.png, id=96, 494.59781pt x 118.19156pt>
 File: images/selection.png Graphic file (type png)
 <use images/selection.png>
-Package pdftex.def Info: images/selection.png  used on input line 77.
+Package pdftex.def Info: images/selection.png  used on input line 74.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 <images/merge.png, id=97, 494.59781pt x 118.19156pt>
 File: images/merge.png Graphic file (type png)
 <use images/merge.png>
-Package pdftex.def Info: images/merge.png  used on input line 85.
+Package pdftex.def Info: images/merge.png  used on input line 82.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 <images/quick.png, id=98, 494.59781pt x 118.19156pt>
 File: images/quick.png Graphic file (type png)
 <use images/quick.png>
-Package pdftex.def Info: images/quick.png  used on input line 93.
+Package pdftex.def Info: images/quick.png  used on input line 90.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 
 
@@ -399,12 +399,12 @@ Package pdftex.def Info: images/quick.png  used on input line 93.
 <images/radix.png, id=106, 494.59781pt x 118.19156pt>
 File: images/radix.png Graphic file (type png)
 <use images/radix.png>
-Package pdftex.def Info: images/radix.png  used on input line 101.
+Package pdftex.def Info: images/radix.png  used on input line 98.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 <images/heap.png, id=107, 494.59781pt x 118.19156pt>
 File: images/heap.png Graphic file (type png)
 <use images/heap.png>
-Package pdftex.def Info: images/heap.png  used on input line 109.
+Package pdftex.def Info: images/heap.png  used on input line 106.
 (pdftex.def)             Requested size: 362.37569pt x 86.59471pt.
 
 
@@ -412,7 +412,7 @@ Package pdftex.def Info: images/heap.png  used on input line 109.
 <images/invertidos.png, id=115, 570.933pt x 354.123pt>
 File: images/invertidos.png Graphic file (type png)
 <use images/invertidos.png>
-Package pdftex.def Info: images/invertidos.png  used on input line 127.
+Package pdftex.def Info: images/invertidos.png  used on input line 124.
 (pdftex.def)             Requested size: 362.37569pt x 224.77373pt.
 
 
@@ -420,12 +420,12 @@ Package pdftex.def Info: images/invertidos.png  used on input line 127.
 <images/ordenados.png, id=121, 570.933pt x 354.123pt>
 File: images/ordenados.png Graphic file (type png)
 <use images/ordenados.png>
-Package pdftex.def Info: images/ordenados.png  used on input line 143.
+Package pdftex.def Info: images/ordenados.png  used on input line 140.
 (pdftex.def)             Requested size: 362.37569pt x 224.77373pt.
 <images/randomicos.png, id=122, 570.933pt x 354.123pt>
 File: images/randomicos.png Graphic file (type png)
 <use images/randomicos.png>
-Package pdftex.def Info: images/randomicos.png  used on input line 159.
+Package pdftex.def Info: images/randomicos.png  used on input line 156.
 (pdftex.def)             Requested size: 362.37569pt x 224.77373pt.
 
 
@@ -433,13 +433,33 @@ Package pdftex.def Info: images/randomicos.png  used on input line 159.
 <images/tudoqueda.png, id=128, 715.473pt x 426.393pt>
 File: images/tudoqueda.png Graphic file (type png)
 <use images/tudoqueda.png>
-Package pdftex.def Info: images/tudoqueda.png  used on input line 176.
+Package pdftex.def Info: images/tudoqueda.png  used on input line 173.
 (pdftex.def)             Requested size: 452.9679pt x 269.94977pt.
 
 
 [7 <./images/randomicos.png>]
 
 [8 <./images/tudoqueda.png>]
+Overfull \hbox (14.95235pt too wide) in paragraph at lines 223--227
+[]\T1/cmr/m/n/12 GeeksforGeeks, \T1/cmr/m/it/12 In-ser-tion Sort\T1/cmr/m/n/12 , Dis-po-ní-vel em: https://www.geeksforgeeks.org/insertion-
+ []
+
+
+Overfull \hbox (13.22778pt too wide) in paragraph at lines 229--233
+[]\T1/cmr/m/n/12 GeeksforGeeks, \T1/cmr/m/it/12 Se-lec-tion Sort\T1/cmr/m/n/12 , Dis-po-ní-vel em: https://www.geeksforgeeks.org/selection-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--245
+[]\T1/cmr/m/n/12 GeeksforGeeks, \T1/cmr/m/it/12 Quick-sort Using Ran-dom Pi-vo-ting\T1/cmr/m/n/12 , Dis-po-ní-vel em:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--245
+\T1/cmr/m/n/12 https://www.geeksforgeeks.org/quicksort-using-random-pivoting/. Acesso em:
+ []
+
+
 
 [9] (Artigo.aux)
  ***********
@@ -450,17 +470,17 @@ Package rerunfilecheck Info: File `Artigo.out' has not changed.
 (rerunfilecheck)             Checksum: C416CEF2CC06949EF0EEB050BBEA50C4;2524.
  ) 
 Here is how much of TeX's memory you used:
- 11114 strings out of 469940
- 176229 string characters out of 5469410
- 585901 words of memory out of 5000000
- 37765 multiletter control sequences out of 15000+600000
- 637557 words of font info for 59 fonts, out of 8000000 for 9000
+ 11135 strings out of 469940
+ 176655 string characters out of 5469410
+ 586209 words of memory out of 5000000
+ 37776 multiletter control sequences out of 15000+600000
+ 638241 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,987b,527s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on Artigo.pdf (9 pages, 398163 bytes).
+ 75i,7n,79p,1013b,527s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\kaiqu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
+Output written on Artigo.pdf (9 pages, 413560 bytes).
 PDF statistics:
- 514 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
+ 564 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  197 words of extra memory for PDF output out of 10000 (max. 10000000)
 

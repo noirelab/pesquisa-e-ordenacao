@@ -24,16 +24,13 @@
 \maketitle
 
 \begin{abstract}
-    \textit{
-        This report presents an empirical comparison of eight sorting algorithms implemented in C++ (Bubble, Insertion, Shell, Selection, Merge, Quick, Radix, and Heap), evaluated under three input scenarios (sorted, reverse‐sorted, and random) on up to 1.35 million elements on a single machine. The results make it clear that the quadratic algorithms (Bubble, Insertion, and Selection) are infeasible for large data volumes, while Random‐Pivot Quick Sort and Heap Sort offer the best balance of average performance and robustness. Shell Sort performs surprisingly well in adverse cases, but the overhead of Radix Sort limits its theoretical advantage. We conclude that algorithm choice must consider not only asymptotic complexity but also memory‐access patterns, space usage, and data‐specific characteristics—there is no one-size-fits-all solution.
+    \textit{This report presents an empirical comparison of eight sorting algorithms implemented in C++ (Bubble, Insertion, Shell, Selection, Merge, Quick, Radix, and Heap), evaluated under three input scenarios (sorted, reverse‐sorted, and random) on up to 1.35 million elements on a single machine. The results make it clear that the quadratic algorithms (Bubble, Insertion, and Selection) are infeasible for large data volumes, while Random‐Pivot Quick Sort and Heap Sort offer the best balance of average performance and robustness. Shell Sort performs surprisingly well in adverse cases, but the overhead of Radix Sort limits its theoretical advantage. We conclude that algorithm choice must consider not only asymptotic complexity but also memory‐access patterns, space usage, and data‐specific characteristics—there is no one-size-fits-all solution.
     }
 \end{abstract}
 
 \selectlanguage{portuguese}
 \begin{abstract}
-    \textit{
-        Este relatório apresenta uma comparação empírica de oito algoritmos de ordenação implementados em C++ (Bubble, Insertion, Shell, Selection, Merge, Quick, Radix e Heap), avaliados em três cenários de entrada (ordenados, invertidos e aleatórios) para até 1,35 milhão de elementos em uma máquina. Os resultados deixam claro que os algoritmos quadráticos (Bubble, Insertion e Selection) são inviáveis para grandes volumes de dados, enquanto Quick Sort com pivô aleatório e Heap Sort oferecem o melhor equilíbrio entre desempenho médio e robustez. Shell Sort surpreende em casos adversos, mas o overhead de Radix Sort limita sua vantagem teórica. Conclui-se que a escolha do método deve considerar não só a complexidade assintótica, mas também padrões de acesso à memória, uso de espaço e características específicas dos dados — não há “tamanho único” que sirva para todas as situações.
-        }
+    \textit{Este relatório apresenta uma comparação empírica de oito algoritmos de ordenação implementados em C++ (Bubble, Insertion, Shell, Selection, Merge, Quick, Radix e Heap), avaliados em três cenários de entrada (ordenados, invertidos e aleatórios) para até 1,35 milhão de elementos em uma máquina. Os resultados deixam claro que os algoritmos quadráticos (Bubble, Insertion e Selection) são inviáveis para grandes volumes de dados, enquanto Quick Sort com pivô aleatório e Heap Sort oferecem o melhor equilíbrio entre desempenho médio e robustez. Shell Sort surpreende em casos adversos, mas o overhead de Radix Sort limita sua vantagem teórica. Conclui-se que a escolha do método deve considerar não só a complexidade assintótica, mas também padrões de acesso à memória, uso de espaço e características específicas dos dados — não há “tamanho único” que sirva para todas as situações.}
 \end{abstract}
 
 % Introdução
@@ -195,5 +192,58 @@
     \end{itemize}
 
     Finalmente, esta análise reforça a importância de considerar fatores além da complexidade assintótica teórica na escolha de algoritmos de ordenação, incluindo padrões de acesso à memória, localidade de cache, estabilidade e características específicas dos dados de entrada. Em sistemas reais, o conhecimento aprofundado dessas características permite selecionar o algoritmo mais adequado para cada contexto específico, otimizando o desempenho e a eficiência dos sistemas computacionais.
+
+        \begin{thebibliography}{8}
+
+        \bibitem{gfg:merge-sort}
+        GeeksforGeeks,
+        \emph{Merge Sort},
+        Disponível em: {https://www.geeksforgeeks.org/merge-sort/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:heap-sort}
+        GeeksforGeeks,
+        \emph{Heap Sort},
+        Disponível em: {https://www.geeksforgeeks.org/heap-sort/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:shell-sort}
+        GeeksforGeeks,
+        \emph{Shell Sort},
+        Disponível em: {https://www.geeksforgeeks.org/shell-sort/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:radix-sort}
+        GeeksforGeeks,
+        \emph{Radix Sort},
+        Disponível em: {https://www.geeksforgeeks.org/radix-sort/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:insertion-sort}
+        GeeksforGeeks,
+        \emph{Insertion Sort},
+        Disponível em: {https://www.geeksforgeeks.org/insertion-sort-algorithm/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:selection-sort}
+        GeeksforGeeks,
+        \emph{Selection Sort},
+        Disponível em: {https://www.geeksforgeeks.org/selection-sort-algorithm-2/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:bubble-sort}
+        GeeksforGeeks,
+        \emph{Bubble Sort},
+        Disponível em: {https://www.geeksforgeeks.org/bubble-sort-algorithm/}.
+        Acesso em: 04 de maio de 2025.
+
+        \bibitem{gfg:quicksort-random-pivot}
+        GeeksforGeeks,
+        \emph{Quicksort Using Random Pivoting},
+        Disponível em: {https://www.geeksforgeeks.org/quicksort-using-random-pivoting/}.
+        Acesso em: 04 de maio de 2025.
+
+        \end{thebibliography}
+
 
 \end{document}

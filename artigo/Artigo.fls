@@ -245,9 +245,12 @@ INPUT .\images\tudoqueda.png
 INPUT .\images\tudoqueda.png
 INPUT .\images\tudoqueda.png
 INPUT .\images\tudoqueda.png
+INPUT C:\Users\kaiqu\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1200.tfm
 INPUT Artigo.aux
 INPUT .\Artigo.out
 INPUT .\Artigo.out
+INPUT C:\Users\kaiqu\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk
+INPUT C:\Users\kaiqu\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk
 INPUT C:\Users\kaiqu\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\kaiqu\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\kaiqu\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk

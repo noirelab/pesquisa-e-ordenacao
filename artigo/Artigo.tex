@@ -10,7 +10,7 @@
 \geometry{margin=1in}
 
 % Document Information
-\title{\bf Pesquisa e Ordenação}
+\title{\bf Comparação de Algoritmos de Ordenação}
 \author{\bf Kaique Medeiros Lima}
 \date{}
 
@@ -19,13 +19,14 @@
 
 % Introdução
 \section{Introdução}
-    Esse relatório apresenta uma análise comparativa de 8 algoritmos de ordenação: Bubble Sort, Insertion Sort, Shell Sort, Selection Sort, Merge Sort, Quick Sort, Radix Sort e Heap Sort. A comparação é feita com base em gráficos que mostram o tempo de execução em função do tamanho do vetor a ser ordenado. Os testes foram realizados em uma máquina com as seguintes especificações: I3-10100f, RTX 2060 e 16GB de RAM.
+    Esse relatório apresenta uma análise comparativa de 8 algoritmos de ordenação: Bubble Sort, Insertion Sort, Shell Sort, Selection Sort, Merge Sort, Quick Sort, Radix Sort e Heap Sort. A comparação é feita com base em gráficos que mostram o tempo de execução em função do tamanho do arquivo a ser ordenado. Os testes foram realizados na linguagem C++, em uma máquina com as seguintes especificações: I3-10100f, RTX 2060 e 16GB de RAM.
     O objetivo é entender o desempenho de cada algoritmo em diferentes cenários e tamanhos de entrada, além de discutir suas características, vantagens e desvantagens. A análise inclui tanto algoritmos de ordenação baseados em comparação quanto não comparativos, permitindo uma visão abrangente das técnicas de ordenação disponíveis.
+
 % Descrição da atividade
 \section{Descrição da atividade}
     \subsection{Algoritmos e seus tempos de execução}
         \subsubsection{Bubble Sort}
-            Bubble Sort faz sucessivas passagens comparando e trocando elementos adjacentes fora de ordem até não haver mais trocas. Seu tempo é quadrático (O(n²)) na maioria dos casos e linear só quando a lista já está ordenada. Por ser estável e simples, serve apenas para ensino ou dados minúsculos; em qualquer cenário real, seu desempenho é inaceitável.
+            Bubble Sort faz sucessivas passagens comparando e trocando elementos adjacentes fora de ordem até não haver mais trocas. Seu tempo é quadrático (O(n²)) na maioria dos casos e linear só quando a lista já está ordenada. Por ser estável e simples, serve apenas para ensino ou dados minúsculos; em qualquer cenário real, seu desempenho é ineficaz. O algotitmo em questão usado no projeto foi otimizado, conferindo se nenhuma troca foi feita na última passagem. Se não houver trocas, o algoritmo termina, evitando passagens desnecessárias.
 
             \begin{figure}[ht]
                 \centering
@@ -41,7 +42,7 @@
             \end{figure}
 
         \subsubsection{Shell Sort}
-            Shell Sort aprimora o Insertion Sort usando uma sequência de “gaps” para comparar e trocar elementos distantes, reduzindo inversões antes da fase final com gap = 1. Seu comportamento depende da escolha de gaps e fica entre O(n log2 n) e O(n(4/3)), sem ser estável. É razoável para tamanhos médios quando se busca algo simples e in-place, mas algoritmos mais modernos usualmente o superam.
+            Shell Sort aprimora o Insertion Sort usando uma sequência de “gaps” para comparar e trocar elementos distantes, reduzindo inversões antes da fase final com gap = 1. Seu comportamento depende da escolha de gaps e fica entre O(n log² n) e O(n(1.5)), sem ser estável. É razoável para tamanhos médios quando se busca algo simples e in-place, mas algoritmos mais modernos usualmente o superam.
 
             \begin{figure}[ht]
                 \centering
@@ -49,7 +50,7 @@
             \end{figure}
 
         \subsubsection{Selection Sort}
-            Selection Sort encontra repetidamente o menor (ou maior) elemento na porção não ordenada e o coloca na posição correta por troca. Independentemente da entrada, sempre faz O(n²) comparações e poucas trocas (O(n)). Por não ser estável e ter custo quadrático, só vale a pena em coleções diminutas ou em situações em que escrita em memória seja extremamente custosa.
+            Selection Sort encontra repetidamente o menor (ou maior) elemento na porção não ordenada e o coloca na posição correta por troca. Independentemente da entrada, sempre faz O(n²) comparações e poucas trocas (O(n)). Por não ser estável e ter custo quadrático, só vale a pena em coleções diminutas ou em situações em que escrita em memória seja extremamente custosa. É ineficiente mesmo em arquivos odenados.
 
             \begin{figure}[ht]
                 \centering
@@ -57,7 +58,7 @@
             \end{figure}
 
         \subsubsection{Merge Sort}
-            Merge Sort divide recursivamente o vetor ao meio, ordena cada metade e mescla os resultados. Seu tempo de execução é sempre O(n log n) e requer O(n) de espaço extra para as fusões. Por manter estabilidade e oferecer desempenho previsível, é indicado para conjuntos grandes ou para ordenação externa, mas o consumo de memória o torna menos atrativo quando há restrição de espaço.
+            Merge Sort divide recursivamente o vetor ao meio, ordena cada metade e mescla os resultados. Seu tempo de execução é sempre O(n log n) e requer O(n) de espaço extra para as fusões. Por manter estabilidade e oferecer desempenho previsível, é indicado para conjuntos grandes ou para ordenação externa, mas o consumo de memória o torna menos atrativo quando há restrição de espaço e por ser recursivo pode levar a stack overflow.
 
             \begin{figure}[h]
                 \centering
@@ -65,15 +66,15 @@
             \end{figure}
 
         \subsubsection{Quick Sort}
-            Quick Sort escolhe um pivô, particiona o array em elementos menores e maiores que ele e aplica recursão nas partições. Em média é O(n log n) com espaço de pilha O(log n), mas pode degradar para O(n²) em casos patológicos de pivô mal escolhido. É o mais rápido na prática para a maioria dos usos gerais, desde que se evitem entradas adversas ou se adote estratégias de escolha do pivô mais robustas.
+            Quick Sort escolhe um pivô, particiona o array em elementos menores e maiores que ele e aplica recursão nas partições. Em média é O(n log n) com espaço de pilha O(log n), mas pode degradar para O(n²) em casos patológicos de pivô mal escolhido. É o mais rápido na prática para a maioria dos usos gerais, desde que se evitem entradas adversas ou se adote estratégias de escolha do pivô mais robustas. Nesse caso, o algoritmo usado foi o de escolha aleatória do pivô, que evita os casos degenerados. O algoritmo também foi otimizado para evitar recursão em partições pequenas.
 
             \begin{figure}[ht]
                 \centering
                 \includegraphics[width=0.8\textwidth]{images/quick.png}
             \end{figure}
 
-        \subsubsection{Radix Sort}
-            Radix Sort é um algoritmo não comparativo que ordena inteiros processando cada dígito, do menos ao mais significativo, agrupando-os em “baldes” a cada passagem. Ele executa em tempo linear relativo ao número de dígitos (O(d·(n+k))) e consome espaço extra proporcional a n + k, tornando-o útil apenas para grandes conjuntos de inteiros de tamanho fixo – para dados menores o overhead praticamente anula qualquer vantagem.
+        \subsubsection{Radix Sort (LSD)}
+            Radix Sort é um algoritmo não comparativo que ordena inteiros processando cada dígito, do menos ao mais significativo, agrupando-os em “baldes” a cada passagem. Ele executa em tempo linear relativo ao número de dígitos (O(d·(n+k))) e consome espaço extra proporcional a n + k, tornando-o útil apenas para grandes conjuntos de inteiros de tamanho fixo – para dados menores o overhead praticamente anula qualquer vantagem, mas não tão eficaz quando os números são muito grandes.
 
             \begin{figure}[ht]
                 \centering
@@ -94,7 +95,7 @@
             Quando os números estão em ordem decrescente, a entrada representa o pior caso para vários algoritmos. Observamos que:
 
             \begin{itemize}
-                \item O Bubble Sort e Insertion Sort tiveram desempenho extremamente ruim, com tempos de execução próximos a 1.2 milhões de milissegundos para entradas de 1.35 milhão de elementos, confirmando sua complexidade O(n²) no pior caso.
+                \item O Bubble Sort e Insertion Sort tiveram desempenho extremamente ruim, com tempos de execução próximos a 2.54 milhões de milissegundos para entradas de 1.35 milhão de elementos, confirmando sua complexidade O(n²) no pior caso.
                 \item Selection Sort também apresentou comportamento quadrático com aproximadamente 765.000 ms para o mesmo tamanho de entrada.
                 \item Quick Sort surpreendentemente manteve bom desempenho (83 ms para 1.35M elementos) graças à implementação com pivô randômico, evitando o caso degenerado.
                 \item Heap Sort foi consistentemente rápido (128 ms para 1.35M elementos), demonstrando que sua complexidade O(n log n) se mantém mesmo em cenários adversos.
@@ -151,7 +152,7 @@
 
             \begin{figure}[ht]
                 \centering
-                \includegraphics[width=1.2\textwidth]{images/tudoqueda.png}
+                \includegraphics[width=1\textwidth]{images/tudoqueda.png}
             \end{figure}
 
 
@@ -159,5 +160,20 @@
 
     % Conclusão
     \section{Conclusão}
+    Este estudo comparativo de oito algoritmos de ordenação revelou insights importantes sobre seus comportamentos e eficiência em diferentes cenários. Os resultados obtidos demonstram claramente que não existe um único algoritmo "melhor" para todas as situações, confirmando a importância de conhecer as características específicas de cada método.
+
+    O Quick Sort com pivô aleatório destacou-se como o algoritmo mais versátil e eficiente na maioria dos cenários, enquanto o Shell Sort surpreendeu com desempenho competitivo apesar de sua menor complexidade teórica. O Heap Sort demonstrou notável consistência independentemente da distribuição dos dados, o que o torna uma escolha confiável em contextos onde o pior caso deve ser evitado. Em contrapartida, os algoritmos quadráticos (Bubble, Insertion e Selection Sort) confirmaram sua inviabilidade para grandes volumes de dados, exceto em situações específicas como dados já ordenados para o Insertion Sort.
+
+    O Radix Sort, apesar de sua complexidade linear teórica, não conseguiu superar consistentemente os melhores algoritmos baseados em comparação, indicando que os fatores constantes e o overhead de processamento por dígito podem ter impacto significativo no desempenho real.
+
+    Para aplicações práticas, este estudo sugere que:
+    \begin{itemize}
+        \item Para uso geral com grandes volumes de dados, o Quick Sort com pivô aleatório oferece o melhor equilíbrio entre eficiência média e robustez;
+        \item Em situações onde o desempenho do pior caso é crítico, Heap Sort ou Merge Sort são alternativas mais seguras;
+        \item Para conjuntos pequenos ou parcialmente ordenados, Insertion Sort pode ser surpreendentemente eficaz;
+        \item Shell Sort merece mais atenção em aplicações práticas do que sua popularidade atual sugere.
+    \end{itemize}
+
+    Finalmente, esta análise reforça a importância de considerar fatores além da complexidade assintótica teórica na escolha de algoritmos de ordenação, incluindo padrões de acesso à memória, localidade de cache, estabilidade e características específicas dos dados de entrada. Em sistemas reais, o conhecimento aprofundado dessas características permite selecionar o algoritmo mais adequado para cada contexto específico, otimizando o desempenho e a eficiência dos sistemas computacionais.
 
 \end{document}

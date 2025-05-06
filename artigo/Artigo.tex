@@ -159,26 +159,24 @@
                 \includegraphics[width=0.8\textwidth]{images/randomicos.png}
             \end{figure}
 
-    \subsection{Comparação Geral}
-        Analisando o desempenho geral dos algoritmos nos diferentes cenários, podemos concluir que:
+            \subsection{Comparação Geral}
+            Analisando o desempenho geral dos algoritmos nos diferentes cenários, podemos concluir que:
 
 
-        \begin{itemize}
-            \item Quick Sort mostrou o melhor equilíbrio entre eficiência e consistência, sendo o algoritmo mais rápido na maioria dos cenários quando implementado com escolha aleatória de pivô.
-            \item Shell Sort surpreendeu positivamente, com desempenho comparável a algoritmos teoricamente mais eficientes, especialmente em dados inversamente ordenados.
-            \item Heap Sort demonstrou sua estabilidade de desempenho, mantendo tempos similares independentemente do tipo de entrada.
-            \item Algoritmos quadráticos (Bubble, Insertion e Selection Sort) são inviáveis para grandes volumes de dados, exceto em casos específicos como o Insertion Sort para dados quase ordenados.
-                \item Radix Sort, apesar de sua complexidade linear, não superou consistentemente os melhores algoritmos de comparação, provavelmente devido ao overhead das passagens por dígito.
+            \begin{itemize}
+                \item Quick Sort mostrou o melhor equilíbrio entre eficiência e consistência, sendo o algoritmo mais rápido na maioria dos cenários quando implementado com escolha aleatória de pivô.
+                \item Shell Sort surpreendeu positivamente, com desempenho comparável a algoritmos teoricamente mais eficientes, especialmente em dados inversamente ordenados.
+                \item Heap Sort demonstrou sua estabilidade de desempenho, mantendo tempos similares independentemente do tipo de entrada.
+                \item Algoritmos quadráticos (Bubble, Insertion e Selection Sort) são inviáveis para grandes volumes de dados, exceto em casos específicos como o Insertion Sort para dados quase ordenados.
+                \item Radix Sort, apesar de sua complexidade linear, não superou consistentemente os melhores algoritmos de comparação, provavelmente devido ao overhead das passagens por dígito. O que se observa é que o algoritmo não é tão eficiente quanto se esperava, mesmo com sua complexidade teórica linear.
             \end{itemize}
 
-            \begin{figure}[ht]
+            \begin{figure}[h!t]
                 \centering
-                \includegraphics[width=0.9\textwidth]{images/tudoqueda.png}
+                \includegraphics[width=1\textwidth]{images/tudoqueda.png}
             \end{figure}
 
-
-
-            Esta análise confirma que a escolha do algoritmo de ordenação deve considerar não apenas a complexidade teórica, mas também características da entrada, requisitos de estabilidade, uso de memória e padrões de acesso que podem afetar o desempenho em sistemas reais.
+            Esta análise confirma que a escolha do algoritmo de ordenação deve considerar não apenas a complexidade teórica, mas também características da entrada, requisitos de estabilidade, uso de memória e padrões de acesso que podem afetar o desempenho em sistemas reais. O que se observa é que não existe um algoritmo "melhor" para todas as situações, e a escolha deve ser feita com base nas características específicas do problema em questão.
 
     % Conclusão
     \section{Conclusão}

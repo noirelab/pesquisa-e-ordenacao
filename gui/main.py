@@ -3,7 +3,7 @@ import flet as ft
 import os
 import time
 
-from gui.sorting_methods import *
+from sorting_methods import *
 
 SORT_FUNCTIONS = {
     "Bubble Sort": bubble_sort,
@@ -16,7 +16,13 @@ SORT_FUNCTIONS = {
     "Radix Sort": radix_sort
 }
 
-FILES_FOLDER = "files/files"
+# 1. pasta onde este arquivo está
+HERE = os.path.dirname(__file__)
+# 2. sobe um nível para a raiz do projeto
+BASE_DIR = os.path.abspath(os.path.join(HERE, os.pardir))
+# 3. monta o path até a pasta modelos
+FILES_FOLDER = os.path.join(BASE_DIR, 'files')
+
 
 def main(page: ft.Page):
     page.title = "Pesquisa e Ordenação - Algoritmos de Ordenação"

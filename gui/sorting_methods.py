@@ -3,9 +3,8 @@ from typing import List, Any
 
 
 def bubble_sort(arr: List[Any]) -> List[Any]:
-    """
-    bubble sort otimizado: interrompe se não houver trocas em uma iteração
-    """
+    # bubble sort otimizado: interrompe se não houver trocas em uma iteração
+    # bubble sort funciona comparando pares adjacentes e trocando-os se estiverem na ordem errada
     n = len(arr)
     for i in range(n):
         swapped = False
@@ -20,9 +19,10 @@ def bubble_sort(arr: List[Any]) -> List[Any]:
 
 
 def selection_sort(arr: List[Any]) -> List[Any]:
-    """
-    selection sort estável: seleciona o mínimo da parte não ordenada
-    """
+    # selection sort estável: seleciona o mínimo da parte não ordenada
+    # seleciona o menor elemento e troca com o primeiro não ordenado
+    # é estável pois não troca elementos iguais
+
     n = len(arr)
     for i in range(n):
         min_idx = i
@@ -35,9 +35,10 @@ def selection_sort(arr: List[Any]) -> List[Any]:
 
 
 def insertion_sort(arr: List[Any]) -> List[Any]:
-    """
-    insertion sort estável: insere elementos na posição correta
-    """
+    # insertion sort estável: insere elementos na posição correta
+    # percorre o array e insere cada elemento na posição correta
+    # é estável pois não troca elementos iguais
+
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
@@ -49,10 +50,10 @@ def insertion_sort(arr: List[Any]) -> List[Any]:
     return arr
 
 
-def shell_sort(arr: List[Any]) -> List[Any]:
-    """
-    shell sort: generalização do insertion sort usando gaps decrescentes
-    """
+def shell_sort(arr: List[Any]) -> List[Any]:#
+    # shell sort: generalização do insertion sort usando gaps decrescentes
+    # divide o array em subarrays e aplica insertion sort em cada um
+
     n = len(arr)
     gap = n // 2
     # reduz gaps até chegar a 1
@@ -70,9 +71,11 @@ def shell_sort(arr: List[Any]) -> List[Any]:
 
 
 def merge_sort(arr: List[Any]) -> List[Any]:
-    """
-    merge sort estável: divide e conquista, usa espaço extra
-    """
+    # merge sort estável: divide e conquista, usa espaço extra
+    # divide o array em duas metades, ordena cada uma e mescla
+    # é estável pois não troca elementos iguais
+    # usa recursão para dividir o array em metades até chegar a 1 elemento
+
     if len(arr) <= 1:
         return arr
     mid = len(arr) // 2
@@ -92,10 +95,11 @@ def merge_sort(arr: List[Any]) -> List[Any]:
 
 
 def quick_sort(arr: List[Any]) -> List[Any]:
-    """
-    quick sort in-place: usa pivô aleatório para reduzir pior caso
-    """
-    def _qs(a: List[Any], low: int, high: int) -> None:
+    # quick sort in-place: usa pivô aleatório para reduzir pior caso
+    # funciona dividindo o array em duas partes: menores e maiores que o pivô
+    # é instável pois pode trocar elementos iguais
+
+    def _qs(a: List[Any], low: int, high: int) -> None: # função auxiliar recursiva
         if low < high:
             p = partition(a, low, high)
             _qs(a, low, p - 1)
@@ -119,9 +123,11 @@ def quick_sort(arr: List[Any]) -> List[Any]:
 
 
 def heap_sort(arr: List[Any]) -> List[Any]:
-    """
-    heap sort in-place: constrói max-heap e extrai o máximo iterativamente
-    """
+    # heap sort in-place: constrói max-heap e extrai o máximo iterativamente
+    # funciona construindo um heap binário e ordenando os elementos
+    # i e ((i - 2) / 2) são os índices do filho esquerdo e direito de i
+    # é instável pois pode trocar elementos iguais
+
     def heapify(a: List[Any], size: int, root: int) -> None:
         largest = root
         left = 2 * root + 1
@@ -148,9 +154,9 @@ def heap_sort(arr: List[Any]) -> List[Any]:
 
 
 def radix_sort(arr: List[int]) -> List[int]:
-    """
-    radix sort lsd para inteiros não-negativos, estável
-    """
+    # radix sort lsd para inteiros não-negativos, estável
+    # funciona ordenando os números por cada dígito, do menos significativo para o mais significativo
+
     if not arr:
         return arr
     assert all(isinstance(x, int) and x >= 0 for x in arr), \

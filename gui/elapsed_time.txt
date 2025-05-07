@@ -1,6 +1,2 @@
-numeros_invertidos_1250000.txt - Radix Sort - 2.8174 seconds
-numeros_randomicos_950000.txt - Radix Sort - 2.5703 seconds
-numeros_randomicos_850000.txt - Radix Sort - 2.1852 seconds
-numeros_randomicos_1350000.txt - Radix Sort - 4.2591 seconds
-numeros_randomicos_1250000.txt - Radix Sort - 3.9209 seconds
-numeros_randomicos_750000.txt - Radix Sort - 1.9183 seconds
+numeros_invertidos_850000.txt - Radix Sort - 1.6797 seconds
+numeros_randomicos_1250000.txt - Quick Sort - 4.2266 seconds

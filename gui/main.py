@@ -95,7 +95,7 @@ def main(page: ft.Page):
                         f"Output: {head}"
 
         # saving the elapsed time to a file
-        output_path = os.path.join(FILES_FOLDER, "elapsed_time.txt")
+        output_path = os.path.join("elapsed_time.txt")
         with open(output_path, "a", encoding="utf-8") as f:
             f.write(f"{sel} - {algo_dropdown.value} - {elapsed:.4f} seconds\n")
 

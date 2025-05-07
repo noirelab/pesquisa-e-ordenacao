@@ -1,0 +1,3 @@
+cd pesquisa-e-ordenacao
+cd files
+sorter.exe . timings.csv

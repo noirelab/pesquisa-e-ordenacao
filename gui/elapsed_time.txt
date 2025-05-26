@@ -1,2 +1,9 @@
-numeros_invertidos_850000.txt - Radix Sort - 1.6797 seconds
-numeros_randomicos_1250000.txt - Quick Sort - 4.2266 seconds
+numeros_randomicos_1350000.txt - Radix Sort - 4.8456 segundos
+numeros_randomicos_1350000.txt - Heap Sort - 14.1956 segundos
+numeros_randomicos_750000.txt - Quick Sort - 2.6119 segundos
+numeros_randomicos_750000.txt - Merge Sort - 3.8019 segundos
+numeros_randomicos_750000.txt - Shell Sort - 8.9069 segundos
+numeros_ordenados_750000.txt - Bubble Sort - 0.0620 segundos
+numeros_ordenados_750000.txt - Insertion Sort - 0.1277 segundos
+numeros_randomicos_1350000.txt - Radix Sort - 4.3865 segundos
+numeros_randomicos_1350000.txt - Quick Sort - 4.9148 segundos

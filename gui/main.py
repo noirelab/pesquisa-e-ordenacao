@@ -27,7 +27,7 @@ FILES_FOLDER = os.path.join(BASE_DIR, 'files')
 def main(page: ft.Page):
     page.title = "Pesquisa e Ordenação - Algoritmos de Ordenação"
 
-    # 1) Scan the folder for .txt files:
+    # scanear os arquivos
     try:
         filenames = sorted(f for f in os.listdir(FILES_FOLDER) if f.endswith(".txt"))
     except FileNotFoundError:
@@ -35,23 +35,23 @@ def main(page: ft.Page):
     if not filenames:
         filenames = ["<no .txt found>"]
 
-    # 2) Create the file-picker dropdown:
+    # file-picker
     file_dropdown = ft.Dropdown(
-        label="Select input file",
+        label="Selecionar arquivo",
         width=300,
         options=[ft.dropdown.Option(name) for name in filenames],
         value=filenames[0]
     )
 
-    # 3) Your existing algorithm dropdown:
+    # dropdown para os métodos de ordenação
     algo_dropdown = ft.Dropdown(
-        label="Choose sorting method",
+        label="Método de Ordenação",
         width=300,
         options=[ft.dropdown.Option(name) for name in SORT_FUNCTIONS],
         value=list(SORT_FUNCTIONS)[0]
     )
 
-    run_button = ft.ElevatedButton(text="Run", width=100)
+    run_button = ft.ElevatedButton(text="Ordenar", width=100)
 
     output = ft.TextField(
         label="Resultado",
@@ -61,12 +61,12 @@ def main(page: ft.Page):
         read_only=True
     )
 
-    # 4) Updated on_run that reads the selected file:
+    # funcao para o botão de ordenação
     def on_run(e):
         sel = file_dropdown.value
-        # guard against the “no files” case
+        # checa se o arquivo existe
         if sel.startswith("<no"):
-            output.value = "❌ No .txt files in folder!"
+            output.value = "Nenhum .txt na pasta!"
             page.update()
             return
 
@@ -76,7 +76,7 @@ def main(page: ft.Page):
             with open(path, "r", encoding="utf-8") as f:
                 nums = [int(line.strip()) for line in f if line.strip()]
         except Exception as ex:
-            output.value = f"❌ Error reading {sel}: {ex}"
+            output.value = f"ERRO AO LER {sel}: {ex}"
             page.update()
             return
 
@@ -88,22 +88,22 @@ def main(page: ft.Page):
         end = time.perf_counter()
         elapsed = end - start
 
-        # display everything
+        # mostra tudo
         head = sorted_nums
-        output.value =  f"Input size: {len(nums)}\n" \
-                        f"Time taken: {elapsed:.4f} seconds\n" \
-                        f"Output: {head}"
+        output.value =  f"Tamanho: {len(nums)}\n" \
+                        f"Tempo: {elapsed:.4f} segundos\n" \
+                        f"Resultado: {head}"
 
-        # saving the elapsed time to a file
+        # salva pra elapsed_time.txt
         output_path = os.path.join("elapsed_time.txt")
         with open(output_path, "a", encoding="utf-8") as f:
-            f.write(f"{sel} - {algo_dropdown.value} - {elapsed:.4f} seconds\n")
+            f.write(f"{sel} - {algo_dropdown.value} - {elapsed:.4f} segundos\n")
 
         page.update()
 
     run_button.on_click = on_run
 
-    # 5) Layout
+    # Layout
     page.add(
         ft.Column([
             file_dropdown,

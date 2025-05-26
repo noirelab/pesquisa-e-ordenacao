@@ -9,14 +9,17 @@
 #include <random>
 
 // ——— Radix sort (LSD, non-negative) ——————————————————
-void counting_sort_for_radix(std::vector<long long>& arr, long long exp) {
+void counting_sort_radix(std::vector<long long>& arr, long long exp) {
     size_t n = arr.size();
     std::vector<long long> output(n);
     int count[10] = {0};
+
     for (size_t i = 0; i < n; ++i)
         count[(arr[i] / exp) % 10]++;
+
     for (int i = 1; i < 10; ++i)
         count[i] += count[i - 1];
+
     for (size_t i = n; i-- > 0; ) {
         int d = (arr[i] / exp) % 10;
         output[--count[d]] = arr[i];
@@ -27,7 +30,7 @@ void radix_sort(std::vector<long long>& arr) {
     if (arr.empty()) return;
     long long maxv = *std::max_element(arr.begin(), arr.end());
     for (long long exp = 1; maxv / exp > 0; exp *= 10)
-        counting_sort_for_radix(arr, exp);
+        counting_sort_radix(arr, exp);
 }
 
 // ——— Heap sort ———————————————————————————————
@@ -40,6 +43,7 @@ void heapify(std::vector<long long>& a, size_t n, size_t i) {
         heapify(a, n, largest);
     }
 }
+
 void heap_sort(std::vector<long long>& a) {
     size_t n = a.size();
     for (size_t i = n/2; i-- > 0; )
@@ -63,6 +67,7 @@ int partition_rand(std::vector<long long>& a, int low, int high) {
     std::swap(a[i+1], a[high]);
     return i+1;
 }
+
 void quick_sort(std::vector<long long>& a, int low, int high) {
     if (low < high) {
         int p = partition_rand(a, low, high);
@@ -104,6 +109,7 @@ void bubble_sort(std::vector<long long>& a) {
         if (!sw) break;
     }
 }
+
 void insertion_sort(std::vector<long long>& a) {
     for (size_t i=1, n=a.size(); i<n; ++i) {
         long long key = a[i];
@@ -114,6 +120,7 @@ void insertion_sort(std::vector<long long>& a) {
         a[j+1] = key;
     }
 }
+
 void selection_sort(std::vector<long long>& a) {
     for (size_t i=0, n=a.size(); i+1<n; ++i) {
         size_t m=i;

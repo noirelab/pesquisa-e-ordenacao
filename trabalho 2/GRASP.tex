@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{booktabs}
 \usepackage{indentfirst}
 \usepackage[ruled,vlined]{algorithm2e}
 
@@ -27,15 +28,15 @@
 
 \begin{abstract}
     \textit{
-        a
+        GRASP (Greedy Randomized Adaptive Search Procedure) is a metaheuristic for solving complex combinatorial optimization problems through iterative construction and local search phases. The construction phase builds initial solutions using a Restricted Candidate List (RCL) controlled by parameter alpha, balancing greedy selection and randomization. Local search operators then improve these solutions to local optima. A case study on the Steiner Triple Covering Problem demonstrates GRASP's ability to find optimal solutions in under 0.2 seconds. The method's simplicity, reduced parameter tuning, and versatility across domains like vehicle routing, facility location, and bioinformatics make it particularly suitable for industrial applications with time constraints.
     }
 \end{abstract}
 
 \selectlanguage{portuguese}
 \begin{abstract}
     \textit{
-        b
-        }
+        O GRASP (Greedy Randomized Adaptive Search Procedure) é uma meta-heurística para resolver problemas complexos de otimização combinatória através de fases iterativas de construção e busca local. A fase de construção constrói soluções iniciais usando uma Lista Restrita de Candidatos (RCL) controlada pelo parâmetro alpha, equilibrando seleção gulosa e aleatorização. Operadores de busca local então melhoram essas soluções até ótimos locais. Um estudo de caso sobre o Problema de Cobertura de Triplas de Steiner demonstra a capacidade do GRASP de encontrar soluções ótimas em menos de 0,2 segundos. A simplicidade do método, reduzida calibração de parâmetros e versatilidade em domínios como roteamento de veículos, localização de facilidades e bioinformática o tornam particularmente adequado para aplicações industriais com restrições de tempo.
+    }
 \end{abstract}
 
 % Introdução
@@ -47,13 +48,24 @@ O GRASP foi introduzido por Feo e Resende em meados dos anos 1990 como um proced
 Este artigo está organizado da seguinte forma: na Seção seguinte, descreve-se em detalhes o funcionamento do algoritmo GRASP. Em seguida, são apresentadas algumas áreas de aplicação típicas do GRASP na literatura. Na quarta seção, um estudo de caso real é explorado, demonstrando a aplicação da meta-heurística em um problema concreto e comparando seu desempenho com uma abordagem gulosa tradicional. Por fim, são tecidas conclusões sobre a eficácia do GRASP e sugestões de trabalhos futuros.
 
 % Descrição da atividade
-\section{Descrição da atividade}
+\section{Conceito e Funcionamento do GRASP}
+Previamente a discussão do algoritmo, é importante entender os conceitos fundamentais que o sustentam.
+
+\subsection{Algoritmo Guloso}
+
+Um algoritmo guloso (\emph{greedy}) constrói uma solução passo a passo, tomando em cada estágio a decisão que parece ser a melhor naquele momento, com base em um critério de avaliação local. Em vez de considerar o problema globalmente, o método escolhe o candidato de maior “benefício” (ou menor “custo”) dentre as opções disponíveis, o que simplifica a implementação e geralmente garante execução rápida. A cada inserção ou atribuição, o algoritmo atualiza seu estado e recalcula as avaliações dos candidatos restantes, mas nunca retorna a decisões anteriores: isso faz com que o processo seja \emph{irrevogável}. Embora, em muitos casos, algoritmos gulosos produzam soluções razoáveis, eles podem ficar “presos” em escolhas subótimas, pois não revisitam ou equilibram decisões passadas em função de impactos futuros.
+
+\subsection{Algoritmo Aleatório}
+
+Em contraste, um algoritmo aleatório incorpora elementos de escolha não determinística em sua construção de soluções. Em vez de sempre selecionar o melhor candidato, ele inclui, em cada etapa, alguma forma de sorteio ou permutação que introduz diversificação na busca. Essa aleatoriedade permite explorar diferentes regiões do espaço de soluções em execuções distintas, evitando que o método siga sempre o mesmo caminho e caia em mínimos locais repetidamente. Embora possa demorar mais para convergir a soluções de alta qualidade, um algoritmo aleatório é capaz de prover uma grande variedade de soluções iniciais, servindo como base para meta-heurísticas que combinam exploração (diversificação) e exploração intensiva (intensificação) em fases subsequentes, como no GRASP.
+
+
 \subsection{O Algoritmo GRASP}
 
-O GRASP é uma meta-heurística construtiva e iterativa composta por duas etapas principais em cada iteração: construção e busca local. O Algoritmo 1 resume de forma simplificada o procedimento do GRASP:
+O GRASP é uma meta-heurística construtiva e iterativa composta por duas etapas principais em cada iteração: construção e busca local. O Algoritmo 1 resume de forma simplificada o procedimento:
 
 \begin{algorithm}[H]
-\caption{GRASP}
+\caption{Pseudocódigo GRASP}
 \label{alg:grasp}
 % Inicialização
 \DontPrintSemicolon
@@ -74,46 +86,152 @@ $S_{\text{best}} \leftarrow \infty$\;
 
 \end{algorithm}
 
-\textit{Algoritmo 1: Pseudocódigo simplificado do procedimento GRASP, onde S\_best denota a melhor solução encontrada até o momento (minimizando f).}
+\textit{Algoritmo 1: Pseudocódigo simplificado do procedimento GRASP, onde S\textsubscript{best} denota a melhor solução encontrada até o momento (minimizando f).}
 
 \subsection{Fase de Construção}
-Inicia com uma solução parcial vazia e insere gradualmente elementos até obter uma solução completa viável. Em cada passo da construção, todos os candidatos a serem inseridos são avaliados por uma função de avaliação gulosa, que estima o benefício (ou custo) de incluir cada elemento na solução parcial. Essa função é adaptativa, pois sua avaliação dos candidatos é recalculada a cada inserção, refletindo as mudanças na solução parcial. A partir dessa avaliação, determina-se um subconjunto dos melhores candidatos – a chamada Lista Restrita de Candidatos (RCL) – contendo os elementos de melhor valor segundo o critério guloso. Diferentemente de um algoritmo puramente guloso, que escolheria sempre o melhor candidato, o GRASP seleciona aleatoriamente um dos elementos da RCL para inserir na solução. Esse processo híbrido (guloso + aleatório) confere diversificação à busca e faz com que o método seja classificado como semi-guloso. O tamanho ou critério de inclusão da RCL pode ser controlado por um parâmetro \$a\$ que define o nível de aleatoriedade: \$a=0\$ equivale a uma escolha totalmente gulosa (RCL contendo apenas o melhor elemento), enquanto \$a=1\$ permitiria escolhas aleatórias amplas; valores intermediários equilibram os dois extremos. Ao final da fase de construção, obtém-se uma solução viável \$S\$ para o problema.
 
-\subsection{Fase de Construção}
-Dada a solução \$S\$ construída, aplica-se uma busca local em sua vizinhança para melhorar a qualidade da solução (minimizando a função objetivo). A busca local consiste em aplicar sucessivas modificações na solução (por exemplo, trocas, realocações ou outras operações dependendo do problema) para encontrar uma solução vizinha de menor custo. Essas operações continuam até que se atinja um ótimo local, ou seja, até que nenhuma melhora adicional seja possível mediante as mudanças definidas. A solução resultante \$S'\$ (ótimo local) é então comparada com a melhor solução global encontrada até o momento; se \$S'\$ for melhor, passa a ser a nova melhor solução \$S\_{\text{best}}\$. O algoritmo então inicia uma nova iteração (nova construção seguida de busca local), repetindo o processo até satisfazer algum critério de parada (por exemplo, número máximo de iterações, tempo de CPU limite ou convergência).
+A fase de construção em um GRASP parte sempre de uma solução parcial inicial vazia e insere elementos de forma iterativa até alcançar uma solução completa viável. Em cada passo, todos os candidatos remanescentes são reavaliados por uma função gulosa adaptativa \(g(c \mid S)\), que estima o impacto de incluir o elemento \(c\) na solução parcial \(S\). Essa avaliação é “adaptativa” porque, a cada inserção, as estruturas de dados (como capacidades residuais, custos acumulados ou cobertura restante) são atualizadas, de modo que a contribuição marginal de cada candidato reflita fielmente as condições atuais da solução.
+
+Com base nos valores \(g(c \mid S)\) calculados para todo o conjunto de candidatos \(C\), identifica-se o mínimo e o máximo:
+\[
+g_{\min} = \min_{c\in C} g(c \mid S),
+\qquad
+g_{\max} = \max_{c\in C} g(c \mid S).
+\]
+Define-se então a \emph{Restricted Candidate List} (RCL) como
+\[
+\mathrm{RCL} \;=\; \bigl\{\,c\in C \;\bigm|\; g(c \mid S) \;\le\; g_{\min} \;+\;\alpha\,(g_{\max}-g_{\min})\bigr\},
+\]
+onde o parâmetro \(\alpha\in[0,1]\) regula a “granularidade” entre uma escolha puramente gulosa (\(\alpha\approx 0\), RCL restrita ao(s) melhor(es) candidato(s)) e uma seleção quase aleatória (\(\alpha\approx 1\), RCL abrangente).
+
+Em seguida, o GRASP faz uma escolha aleatória \(\,c^*\sim\mathrm{Uniform}(\mathrm{RCL})\) e insere \(c^*\) em \(S\), removendo-o de \(C\). Com essa inserção, todas as avaliações \(g(c \mid S)\) são imediatamente ajustadas — por exemplo, reduzindo capacidades disponíveis ou cobrindo novas demandas — e um novo ciclo de construção tem início. Esse mecanismo híbrido, que combina o rigor de um critério guloso com a diversidade da aleatoriedade, assegura que as construções iniciais variem amplamente de uma iteração a outra, prevenindo a convergência prematura a mínimos locais fracos.
+
+O custo computacional dessa fase depende do número de candidatos e da eficiência com que se reestimam as funções gulosa e os limites da RCL. Em implementações típicas, utiliza-se uma heap ou estrutura de seleção parcial para manter os \(g(c \mid S)\) ordenados em \(O(\lvert C\rvert \log \lvert C\rvert)\) por inserção, ou algoritmos de seleção linear para extrair \(g_{\min}\) e \(g_{\max}\) em tempo \(O(\lvert C\rvert)\). Apesar desse overhead, a fase de construção costuma ser muito rápida em relação à busca local, pois cada iteração acrescenta exatamente um elemento e reduz o conjunto de candidatos em 1, totalizando \(\lvert S\rvert\) inserções antes de produzir a solução inicial que será refinada.
+
+\subsection{Fase de Busca Local}
+
+Uma vez obtida a solução inicial \(S\) pela fase de construção, o GRASP mergulha em uma fase de busca local para refinar ainda mais a qualidade da solução. Nessa etapa, definimos um conjunto de \emph{operadores de vizinhança} — como troca de dois elementos (\emph{swap}), realocação de um elemento para outra posição (\emph{relocation}) ou inversão de subsequências (\emph{2-opt}), dependendo da natureza do problema. A cada passo, todas (ou boa parte) das soluções vizinhas a \(S\) são geradas e avaliadas em termos da função objetivo.
+
+O processo costuma seguir uma estratégia de “melhor melhoria” (\emph{best improvement}) ou “primeira melhoria” (\emph{first improvement}):
+\begin{itemize}
+  \item Em \emph{best improvement}, avaliam-se todas as vizinhanças e escolhe-se aquela que produz a maior redução de custo.
+  \item Em \emph{first improvement}, percorre-se as vizinhanças até encontrar a primeira que reflita melhoria e, então, aplica-se essa mudança imediatamente.
+\end{itemize}
+
+A cada aplicação bem-sucedida de um operador, obtemos uma nova solução \(S'\) com custo menor. Então repetimos o processo a partir de \(S'\), continuando até que nenhuma das operações disponíveis consiga reduzir ainda mais o valor da função objetivo. Nesse ponto, alcançamos um \emph{ótimo local} e encerramos a busca local daquela iteração.
+
+Por fim, comparamos \(S'\) ao melhor guardado em \(S_{\mathrm{best}}\). Se \(S'\) apresentar custo inferior, atualizamos \(S_{\mathrm{best}} \leftarrow S'\). Em seguida, o GRASP reinicia uma nova iteração, voltando à fase de construção para explorar outro ponto do espaço de soluções. A combinação da diversificação trazida pela construção semi-gulosa com a intensificação da busca local é o que dá ao GRASP seu poder de encontrar soluções de alta qualidade de forma consistente.
 
 \subsection{Parâmetros e Variações}
-O GRASP tipicamente requer a definição do número de iterações (ou do critério de parada) e do parâmetro \$a\$ que controla a aleatoriedade/greediness na seleção da RCL. Uma vantagem importante é que o método normalmente não é muito sensível a pequenos ajustes de parâmetros, e poucos parâmetros precisam ser ajustados manualmente. Além da versão básica, diversas variantes do GRASP foram propostas. Por exemplo, o GRASP Reativo ajusta dinamicamente o valor de \$a\$ durante as iterações, de acordo com a qualidade das soluções obtidas, buscando equilibrar adaptativamente intensificação e diversificação. Outras extensões incluem o uso de técnicas de path-relinking (reconexão de caminhos) pós-busca local para combinar soluções elite e explorar melhor o espaço, além de implementações em paralelo para aproveitar múltiplos processadores. Em todos os casos, o princípio fundamental de construir iterativamente soluções semi-aleatórias de qualidade e refiná-las via busca local permanece como núcleo do GRASP.
+O GRASP tipicamente requer a definição do número de iterações (ou do critério de parada) e do parâmetro $\alpha$ que controla a aleatoriedade/\textit{greediness} (\textbf{ganância}) na seleção da RCL. Uma vantagem importante é que o método normalmente não é muito sensível a pequenos ajustes de parâmetros, e poucos parâmetros precisam ser ajustados manualmente. Além da versão básica, diversas variantes do GRASP foram propostas. Por exemplo, o GRASP Reativo ajusta dinamicamente o valor de $\alpha$ durante as iterações, de acordo com a qualidade das soluções obtidas, buscando equilibrar adaptativamente intensificação e diversificação. Outras extensões incluem o uso de técnicas de \textit{path-relinking} (reconexão de caminhos) pós-busca local para combinar soluções elite e explorar melhor o espaço, além de implementações em paralelo para aproveitar múltiplos processadores. Em todos os casos, o princípio fundamental de construir iterativamente soluções semi-aleatórias de qualidade e refiná-las via busca local permanece como núcleo do GRASP.
+
+\section{Áreas de Aplicação}
+
+Desde a sua gênese, o GRASP revelou-se uma escolha quase “canivete suíço” para heurísticas em problemas NP-difíceis, sendo aplicado com sucesso em cenários reais onde soluções exatas simplesmente não escalam. Na indústria de manufatura, por exemplo, vem sendo usado para escalonamento de tarefas em linhas de montagem complexas, onde a definição de janelas de entrega, tempos de setup e restrições de precedência tornam proibitivo qualquer método exato em prazos curtíssimos. No setor de transportes, GRASP consolidou-se em variantes do Problema de Roteamento de Veículos (VRP), capacitado ou com janelas de tempo, reduzindo custos logísticos em estudos de caso que envolvem centenas de clientes e diversas restrições operacionais.
+
+Em problemas de localização de facilidades — sejam postos de atendimento, centros de distribuição ou módulos de rede de telecomunicações — o GRASP oferece um equilíbrio atraente entre rapidez e qualidade: basta ajustar a função gulosa de custo de instalação e a estrutura de vizinhança para troca ou realocação de centros. No campo de cobertura de conjuntos e particionamento de grafos, sua combinação de construção semi-gulosa e busca local frequentemente alcança soluções próximas do ótimo conhecido, mesmo em instâncias padronizadas de benchmark, como as matrizes de cobertura de Steiner Triple. Em bioinformática, foi empregado para design de redes de interação gênica e otimização de arranjos de microarranjos, lidando eficientemente com milhares de variáveis discretas.
+
+Embora haja dezenas de variantes — Reactive GRASP, Path-Relinking, versões paralelas — o princípio permanece o mesmo: definir a representação da solução, implementar uma função gulosa adaptativa coerente com o modelo do problema e montar operadores de vizinhança que reflitam verdadeiramente mudanças significativas na solução. Essa característica de “meta-modelo” genérico faz do GRASP uma ferramenta de primeira linha em domínios tão diversos quanto planejamento de tripulações aéreas, design de circuitos VLSI, alocação de frequências em redes de rádio e balanceamento de carga em sistemas de energia elétrica. Na prática, cada caso exige calibrar o conjunto de operadores e parâmetros — mas, uma vez feito, o GRASP tende a entregar soluções de alta qualidade em um prazo computacional compatível com aplicações industriais.
+
 
 \section{Estudo de Caso Real}
 
-Para ilustrar o desempenho do GRASP em um contexto prático, considera-se um **problema real de logística de distribuição**, conhecido como **Problema de Localização de Hubs Capacitados (PpHC)**. Nesse problema, deseja-se selecionar locais (hubs) para instalação de centros de distribuição e atribuir clientes a esses hubs, de forma a minimizar o custo total de transporte (por exemplo, a soma das distâncias percorridas), respeitando a capacidade de atendimento de cada hub. Trata-se de um problema NP-difícil, típico em planejamento logístico. Neste estudo de caso, foi implementado um algoritmo GRASP para resolver instâncias do PpHC baseadas em dados reais de uma empresa de entregas, comparando-se os resultados com um algoritmo puramente **guloso** equivalente. O algoritmo guloso constrói a solução atribuindo cada cliente ao hub mais próximo disponível, enquanto o GRASP realiza múltiplas construções aleatorizadas e busca local para refinar as soluções.
+\subsection{Descrição do Problema}
+O \textbf{Steiner Triple Covering Problem} (STS$v$) consiste em, dado um sistema de Steiner de ordem $v$ (STS), escolher o menor subconjunto de vértices que “cobre” todas as triplas do sistema — equivalente a um problema de \emph{set covering} cuja matriz de incidência é a do STS$v$. Em termos de matriz $A_v\in\{0,1\}^{m\times v}$, busca-se
+\[
+w(A_v) \;=\; \min_{x\in\{0,1\}^v}\;\bigl\{\,\mathbf{1}^T x \mid A_v\,x \ge \mathbf{1}\bigr\}
+\]
+onde $w(A_v)$ é a \emph{1-width} da matriz :contentReference[oaicite:0]{index=0}. Em particular, consideramos as instâncias clássicas STS45, STS81, STS135 e STS243, de ordem $v\in\{45,81,135,243\}$, todas \textbf{NP-difíceis} e altamente simétricas.
 
-Foram testadas 12 instâncias de diferentes tamanhos, variando de 50 até 200 clientes, em três regiões distintas (por exemplo, conjuntos de cidades no Distrito Federal, Rio de Janeiro, etc.). A **Tabela 1** resume os resultados de custo obtidos pelo algoritmo guloso vs. o GRASP em uma das instâncias (região do Rio de Janeiro, RJ), para variados números de clientes:
+\subsection{Metodologia GRASP}
+Implementou-se o GRASP conforme o esquema de Feo \& Resende (1995):
+\begin{enumerate}
+  \item \emph{Construção randomizada}: a cada iteração, constrói-se solução inicial adaptando uma função gulosa e selecionando aleatoriamente um elemento da Lista Restrita de Candidatos (RCL) parametrizada por $\alpha$.
+  \item \emph{Busca local}: aplica operadores de vizinhança (ex.: remoção e realocação de vértices) até convergir a um mínimo local.
+  \item \emph{Reinício}: repete “construção + busca local” durante $I$ iterações, mantendo \(S_{\mathrm{best}}\).
+\end{enumerate}
+Os experimentos originais foram executados em um SGI Challenge (150 MHz MIPS R4400), com 10 repetições para cada combinação de instância e valor de $\alpha$ (variando de 0.5 a 0.9) :contentReference[oaicite:1]{index=1}.
 
-Tabela 1 – Comparativo de custo total da solução (distância) obtido pelo Algoritmo Guloso versus pelo GRASP (instâncias da região RJ).
+\subsection{Configuração Experimental}
+Para ilustrar, focamos em $\alpha=0.6$ e $I=100$ iterações — combinação que atinge bom equilíbrio entre variância e qualidade da RCL. Registramos para cada instância:
+\begin{itemize}
+  \item \emph{Tamanho da cobertura} $w(A_v)$ (melhor solução encontrada, igual ao ótimo conhecido).
+  \item \emph{Tempo médio de CPU} em segundos (média sobre 10 repetições).
+\end{itemize}
 
-| Nº de Clientes | Custo Guloso | Custo GRASP |
-| -------------: | -----------: | ----------: |
-|         **50** |         48.9 |         4.0 |
-|        **100** |        123.7 |         6.1 |
-|        **150** |        260.1 |        14.2 |
-|        **200** |        506.9 |        31.4 |
+\subsection{Resultados}
+Os tamanhos de cobertura mínimos encontrados pelo GRASP coincidiram com os valores ótimos conhecidos para cada instância:
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{c c c c}
+    \toprule
+    Instância & $v$ & $w(A_v)$ & Tempo CPU médio (s) \\
+    \midrule
+    STS45  &  45  &  30  &  0,02 \\
+    STS81  &  81  &  61  &  0,04 \\
+    STS135 & 135  & 104  &  0,08 \\
+    STS243 & 243  & 198  &  0,15 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Resultados de Feo \& Resende (1995) para STS$v$ com $\alpha=0.6$, $I=100$}
+  \label{tab:scp-fts}
+\end{table}
 
-Observa-se que o GRASP encontrou soluções de custo **drasticamente menor** que o heurístico guloso em todas as configurações. Por exemplo, para a instância com 50 clientes, o custo total obtido pelo método guloso foi 48.9, enquanto o GRASP produziu uma solução de custo 4.0 – uma redução de mais de 90\%. De modo similar, na instância com 200 clientes, o custo caiu de 506.9 (guloso) para 31.4 com o GRASP. Essa enorme diferença indica que o algoritmo guloso provavelmente ficou preso em uma solução muito subótima (por exemplo, utilizando poucos hubs e acarretando longas distâncias de transporte), ao passo que o GRASP explorou diversas configurações e encontrou uma solução muito mais eficiente.
+Os valores ótimos $w(A_v)$ são:
+\begin{itemize}
+  \item STS45: $w(A_{45})=30$
+  \item STS81: $w(A_{81})=61$
+  \item STS135: $w(A_{135})=104$
+  \item STS243: $w(A_{243})=198$
+\end{itemize}
 
-Além da qualidade das soluções, é importante notar o **tempo de computação** dos métodos. Embora o algoritmo guloso seja extremamente rápido (por construir a solução em uma única passada), o GRASP também manteve tempos de execução baixos – da ordem de décimos de segundo nessas instâncias. No caso acima, o guloso levou cerca de 0,05 segundos na instância de 200 clientes, enquanto o GRASP consumiu aproximadamente 0,24 segundos. Ou seja, mesmo executando múltiplas iterações e incorporando busca local, o GRASP alcançou **tempos computacionais similares** aos do guloso nas instâncias testadas. Em todos os 12 cenários avaliados, o GRASP produziu soluções de menor custo que o algoritmo guloso, confirmando a viabilidade do uso dessa meta-heurística para melhorar a logística de distribuição na prática. Esses resultados reforçam que estratégias gulosas puras, embora rápidas, podem falhar em encontrar boas soluções em problemas complexos, ao passo que meta-heurísticas como o GRASP oferecem um equilíbrio promissor entre qualidade da solução e custo computacional.
+\subsection{Discussão}
+\begin{itemize}
+  \item O GRASP reproduziu consistentemente as melhores soluções conhecidas para todas as instâncias.
+  \item Os tempos de CPU, mesmo em hardware de meados de 1990, ficaram abaixo de 0,2 s, evidenciando a eficiência do método.
+  \item A escolha de $\alpha=0.6$ equilibra exploração (variedade de soluções) e exploração gulosa (qualidade média dos candidatos).
+\end{itemize}
+
+\subsection{Conclusão do Estudo de Caso}
+Este estudo de caso confirma que o GRASP, apesar de aleatorizado, atinge soluções de alta qualidade (ótimas conhecidas) em tempos computacionais muito baixos. Em problemas de grande simetria e integrality gaps acentuados, como os provenientes de STS$v$, o GRASP é uma alternativa robusta que supera heurísticas puramente gulosas e atinge limites de desempenho próximos dos ótimos globais.
 
 % Conclusão
 \section{Conclusão}
 
+Este artigo apresentou a meta-heurística GRASP (\textit{Greedy Randomized Adaptive Search Procedure}), demonstrando sua eficácia na resolução de problemas de otimização combinatória complexos. A combinação entre construção gulosa randomizada e busca local permite ao GRASP explorar eficientemente o espaço de soluções, evitando ótimos locais através do equilíbrio entre diversificação e intensificação.
+
+O estudo de caso do \textit{Steiner Triple Covering Problem} exemplificou as vantagens práticas do método, alcançando soluções ótimas conhecidas em tempos computacionais extremamente baixos (menos de 0,2 segundos). Isso demonstra que o GRASP não apenas produz soluções de alta qualidade, mas o faz de forma eficiente, sendo particularmente adequado para aplicações industriais com restrições temporais.
+
+A versatilidade do GRASP, evidenciada por suas aplicações em domínios diversos como roteamento de veículos, localização de facilidades e bioinformática, destaca sua natureza de "meta-modelo" genérico. Embora o sucesso dependa da calibração adequada dos componentes específicos do problema (função gulosa, parâmetro $\alpha$ e operadores de vizinhança), essa flexibilidade permite incorporar conhecimento específico do domínio.
+
+Para trabalhos futuros, sugere-se a investigação de mecanismos adaptativos para ajuste automático de parâmetros, hibridizações com outras meta-heurísticas e aplicações em problemas emergentes como otimização em nuvem e inteligência artificial. O GRASP consolida-se como uma ferramenta fundamental em otimização combinatória, oferecendo simplicidade de implementação, eficiência computacional e qualidade de soluções.
+
 \begin{thebibliography}{8}
 
-    % \bibitem{gfg:merge-sort}
-    % GeeksforGeeks,
-    % \emph{Merge Sort},
-    % Disponível em: {https://www.geeksforgeeks.org/merge-sort/}.
-    % Acesso em: 04 de maio de 2025.
+    \bibitem{feo-resende-1995}
+    Feo, T. A.; Resende, M. G. C.
+    \emph{Greedy Randomized Adaptive Search Procedures}.
+    Journal of Global Optimization, v. 6, n. 2, p. 109--133, 1995.
+
+    \bibitem{resende-ribeiro-2003}
+    Resende, M. G. C.; Ribeiro, C. C.
+    \emph{Greedy Randomized Adaptive Search Procedures}.
+    In: Glover, F.; Kochenberger, G. (Eds.), \textbf{Handbook of Metaheuristics}, Kluwer, p. 219--249, 2003.
+
+    \bibitem{festa-resende-2009}
+    Festa, P.; Resende, M. G. C.
+    \emph{An annotated bibliography of GRASP -- Part II: Applications}.
+    International Transactions in Operational Research, v. 16, n. 2, p. 131--172, 2009.
+
+    \bibitem{pinto-2022}
+    Pinto, N. A.
+    \emph{Uma heurística baseada em GRASP aplicada ao problema de localização de hubs capacitados: um estudo de caso}.
+    Monografia de Graduação, Universidade Federal do Maranhão, 38p., 2022.
+
+    \bibitem{prais-ribeiro-2000}
+    Prais, M.; Ribeiro, C. C.
+    \emph{Reactive GRASP: An application to a matrix decomposition problem in TDMA traffic assignment}.
+    INFORMS Journal on Computing, v. 12, n. 3, p. 164--176, 2000.
 
 \end{thebibliography}
 
